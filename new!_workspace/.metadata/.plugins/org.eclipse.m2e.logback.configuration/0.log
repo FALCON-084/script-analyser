@@ -1,0 +1,225 @@
+2017-11-06 17:52:57,752 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.ust:ScriptAnalyzerMain:0.0.1-SNAPSHOT @ C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\pom.xml.
+2017-11-06 17:52:59,488 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.ust:ScriptAnalyzerMain:0.0.1-SNAPSHOT @ C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\pom.xml.
+2017-11-06 17:53:06,448 [Worker-15] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ust:parserlib:0.0.1-SNAPSHOT @ C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\pom.xml.
+2017-11-06 17:53:07,056 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:07,056 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-06 17:53:07,058 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:07,058 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-06 17:53:07,557 [Worker-15] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.ust:scriptanalyzer:0.0.1-SNAPSHOT @ C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\pom.xml.
+2017-11-06 17:53:08,241 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:53:08,248 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-06 17:53:08,418 [Worker-15] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:53:08,420 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-06 17:53:26,015 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:26,015 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-06 17:53:26,016 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:26,016 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-06 17:53:26,615 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:53:26,627 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-06 17:53:26,781 [Worker-17] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:53:26,782 [Worker-17] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-06 17:53:44,432 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:44,432 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-06 17:53:44,433 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:44,433 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-06 17:53:44,458 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:53:44,459 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-11-06 17:53:44,466 [Worker-13] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:53:44,468 [Worker-13] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-06 17:53:45,569 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:45,569 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-06 17:53:45,573 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:45,574 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-06 17:53:47,812 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:47,812 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-06 17:53:47,814 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:53:47,815 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-06 17:53:47,957 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:53:47,962 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-06 17:53:48,128 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:53:48,129 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-06 17:54:23,892 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2017-11-06 17:54:29,703 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain
+2017-11-06 17:54:29,705 [Worker-9] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2017-11-06 17:54:51,069 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:54:51,175 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-06 17:54:51,191 [Worker-18] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:54:51,196 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-06 17:55:09,692 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:55:09,694 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-06 17:55:09,695 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:55:09,697 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-06 17:55:19,873 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:55:19,875 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-06 17:55:19,878 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:55:19,880 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-06 17:55:19,896 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:55:19,908 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-06 17:55:19,921 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-06 17:55:19,923 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-06 17:55:33,505 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:55:33,505 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-06 17:55:33,506 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:55:33,506 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-06 17:55:44,713 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:55:44,715 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-06 17:55:44,717 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-06 17:55:44,717 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-07 16:47:25,701 [Worker-722] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 16:47:25,724 [Worker-722] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-07 16:47:25,729 [Worker-722] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 16:47:25,775 [Worker-722] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-07 17:02:09,854 [Worker-728] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 17:02:09,858 [Worker-728] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-07 17:02:09,865 [Worker-728] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 17:02:09,868 [Worker-728] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-07 17:04:00,298 [Worker-728] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 17:04:00,301 [Worker-728] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-07 17:04:00,304 [Worker-728] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 17:04:00,307 [Worker-728] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-07 17:06:04,085 [Worker-729] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 17:06:04,087 [Worker-729] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-07 17:06:04,090 [Worker-729] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 17:06:04,092 [Worker-729] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-07 17:08:18,624 [Worker-723] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 17:08:18,627 [Worker-723] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-07 17:08:18,629 [Worker-723] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-07 17:08:18,631 [Worker-723] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 11:28:13,343 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 11:28:13,351 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 11:28:13,370 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 11:28:13,371 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 12:20:21,527 [Worker-41] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 12:20:21,550 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 12:20:21,558 [Worker-41] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 12:20:21,560 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 12:26:35,881 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 12:26:35,901 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 12:26:35,911 [Worker-38] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 12:26:35,913 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:31:31,404 [Worker-88] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:31:31,418 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:31:31,424 [Worker-88] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:31:31,425 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:32:19,949 [Worker-90] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:32:19,963 [Worker-90] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:32:19,968 [Worker-90] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:32:19,969 [Worker-90] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:34:29,410 [Worker-87] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:34:29,424 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:34:29,431 [Worker-87] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:34:29,432 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:35:36,516 [Worker-90] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:35:36,531 [Worker-90] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:35:36,538 [Worker-90] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:35:36,539 [Worker-90] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:35:45,866 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2017-11-08 13:36:00,856 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2017-11-08 13:36:00,896 [Worker-92] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain
+2017-11-08 13:36:00,897 [Worker-92] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2017-11-08 13:37:50,288 [Worker-88] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:37:50,296 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:37:50,302 [Worker-88] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:37:50,303 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:37:52,589 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 13:37:52,590 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-08 13:37:52,593 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 13:37:52,594 [Worker-93] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-08 13:37:53,859 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:37:53,864 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:37:53,871 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:37:53,872 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:38:04,832 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2017-11-08 13:38:04,864 [Worker-88] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain
+2017-11-08 13:38:04,865 [Worker-88] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2017-11-08 13:48:05,545 [Worker-95] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:48:05,550 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:48:05,624 [Worker-95] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:48:05,628 [Worker-95] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:48:07,071 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 13:48:07,073 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-08 13:48:07,074 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 13:48:07,076 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-08 13:48:07,535 [Worker-97] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:48:07,541 [Worker-97] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:48:07,546 [Worker-97] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:48:07,548 [Worker-97] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:51:40,789 [Worker-101] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 13:51:40,834 [Worker-101] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 13:51:40,837 [Worker-101] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:51:40,843 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 13:51:40,848 [Worker-101] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 13:51:40,850 [Worker-101] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 13:51:41,891 [Worker-101] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 13:52:32,959 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2017-11-08 13:52:32,983 [Worker-101] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain
+2017-11-08 13:52:32,983 [Worker-101] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2017-11-08 14:29:53,441 [Worker-111] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:29:53,474 [Worker-111] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:29:53,477 [Worker-111] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 14:29:53,483 [Worker-111] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 14:29:53,491 [Worker-111] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 14:29:53,492 [Worker-111] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 14:29:54,838 [Worker-113] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:29:54,865 [Worker-113] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:29:54,880 [Worker-113] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 14:29:54,881 [Worker-113] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-08 14:29:54,882 [Worker-113] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 14:29:54,884 [Worker-113] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-08 14:29:55,169 [Worker-113] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:29:55,254 [Worker-113] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:29:55,257 [Worker-113] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 14:29:55,264 [Worker-113] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 14:29:55,270 [Worker-113] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 14:29:55,272 [Worker-113] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 14:30:05,144 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2017-11-08 14:30:05,176 [Worker-114] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain
+2017-11-08 14:30:05,176 [Worker-114] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2017-11-08 14:31:33,863 [Worker-86] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:31:33,919 [Worker-86] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:31:33,922 [Worker-86] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 14:31:33,928 [Worker-86] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 14:31:33,934 [Worker-86] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 14:31:33,936 [Worker-86] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 14:31:35,276 [Worker-115] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:31:35,295 [Worker-115] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:31:35,311 [Worker-115] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 14:31:35,312 [Worker-115] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-08 14:31:35,312 [Worker-115] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 14:31:35,313 [Worker-115] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-08 14:31:35,597 [Worker-109] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:31:35,703 [Worker-109] ERROR o.e.m.c.i.URLConnectionCaches - Unexpected URLConnection defaultUseCaches enabled
+2017-11-08 14:31:35,707 [Worker-109] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 14:31:35,713 [Worker-109] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 14:31:35,719 [Worker-109] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 14:31:35,720 [Worker-109] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 14:31:39,925 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2017-11-08 14:31:39,947 [Worker-112] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain
+2017-11-08 14:31:39,947 [Worker-112] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2017-11-08 18:16:06,039 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 18:16:06,123 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 18:16:06,399 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 18:16:06,403 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 18:48:47,811 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2017-11-08 18:48:48,258 [Worker-16] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain
+2017-11-08 18:48:48,259 [Worker-16] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean install
+2017-11-08 18:49:56,209 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 18:49:56,221 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 18:49:56,227 [Worker-20] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 18:49:56,229 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 18:59:57,812 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 18:59:57,818 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 18:59:57,824 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 18:59:57,830 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 19:00:01,346 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 19:00:01,388 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\main\resources
+2017-11-08 19:00:01,390 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-11-08 19:00:01,390 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\parserlib\src\test\resources
+2017-11-08 19:00:01,934 [Worker-24] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 19:00:01,957 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 19:00:01,964 [Worker-24] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 19:00:01,968 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources
+2017-11-08 19:07:53,864 [Worker-30] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 19:07:53,870 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 65 resources
+2017-11-08 19:07:53,878 [Worker-30] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-08 19:07:53,880 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\c58711\Desktop\new!_workspace\ScriptAnalyzerMain\scriptanalyzer\src\test\resources

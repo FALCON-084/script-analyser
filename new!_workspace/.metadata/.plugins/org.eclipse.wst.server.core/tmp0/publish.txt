@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Wed Nov 08 19:07:55 IST 2017
+org.eclipse.jst.j2ee.server\:/binary\:C\:\\Users\\c58711\\.m2\\repository\\org\\springframework\\spring-web\\4.2.1.RELEASE\\spring-web-4.2.1.RELEASE.jar=WEB-INF/lib/spring-web-4.2.1.RELEASE.jar
+org.eclipse.jst.j2ee.server\:parserlib=WEB-INF/lib/parserlib-0.0.1-SNAPSHOT.jar

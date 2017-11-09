@@ -1,0 +1,5 @@
+com\ust\diagram\manipulator\DiagramManipulator.class
+com\ust\rest\controller\MainController.class
+com\ust\parser\ScriptParser.class
+com\ust\model\CodeBlockModel.class
+com\ust\model\ResponseModel.class

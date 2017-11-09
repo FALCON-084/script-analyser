@@ -1,0 +1,6 @@
+127.0.0.1 - - [06/Nov/2017:17:56:16 +0530] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [06/Nov/2017:17:56:24 +0530] "GET /scriptanalyzer/ HTTP/1.1" 200 2353
+0:0:0:0:0:0:0:1 - - [06/Nov/2017:17:56:40 +0530] "GET /scriptanalyzer/ HTTP/1.1" 200 2353
+0:0:0:0:0:0:0:1 - - [06/Nov/2017:17:56:47 +0530] "GET /scriptanalyzer/site.js HTTP/1.1" 200 2237
+0:0:0:0:0:0:0:1 - - [06/Nov/2017:17:56:47 +0530] "GET /scriptanalyzer/viz.js HTTP/1.1" 200 1364434
+0:0:0:0:0:0:0:1 - - [06/Nov/2017:17:56:47 +0530] "POST /scriptanalyzer/fileprocess HTTP/1.1" 200 7156229

@@ -1,0 +1,782 @@
+package com.ust.parser;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.ust.diagram.manipulator.DiagramManipulator;
+import com.ust.lib.jsqlparser.expression.operators.conditional.AndExpression;
+import com.ust.lib.jsqlparser.parser.CCJSqlParserUtil;
+import com.ust.lib.jsqlparser.statement.select.PlainSelect;
+import com.ust.lib.jsqlparser.statement.select.Select;
+import com.ust.model.CodeBlockModel;
+import com.ust.model.ResponseModel;
+
+@Component
+public class ScriptParser {
+
+	@Autowired
+	DiagramManipulator diagramManipulator;
+
+	public ResponseModel parse(MultipartFile inputFile) throws Exception
+	{
+		ResponseModel respModel = new ResponseModel();
+		List<CodeBlockModel> codeBlockList = new ArrayList<CodeBlockModel>();
+		List<String> lstFileLines = saveFileToModal(inputFile, respModel);
+
+		ArrayList<String> emptyList = new ArrayList<String>();
+		List<ArrayList<String>> insertsList = new ArrayList<ArrayList<String>>();
+		List<ArrayList<String>> updatesList = new ArrayList<ArrayList<String>>();
+		List<ArrayList<String>> createsList = new ArrayList<ArrayList<String>>();
+		List<ArrayList<String>> deletesList = new ArrayList<ArrayList<String>>();
+		List<ArrayList<String>> srctableListcopy=  new ArrayList<ArrayList<String>>();
+		List<ArrayList<String>> tarTableListcopy=  new ArrayList<ArrayList<String>>();
+		List<ArrayList<String>> tempListcopy=  new ArrayList<ArrayList<String>>();
+		Map<String, List<ArrayList<String>>> cleanMap = new HashMap<String,List<ArrayList<String>>>();
+		Map<Integer,String> cbidLnNum = new HashMap<Integer,String>();
+		Map<Integer,List<String>> cbIDQuery = new HashMap<Integer,List<String>>();
+		Map<Integer,String> cbidAction = new HashMap<Integer,String>();
+		Map<Integer,List<String>> srcTableList = new HashMap<Integer,List<String>>();
+		Map<Integer,List<String>> tarTableList = new HashMap<Integer,List<String>>();
+		Map<Integer,List<String>> stAloneTableList = new HashMap<Integer,List<String>>();
+		Map<Integer,String> diGrapgList = new HashMap<Integer,String>();
+
+
+		removeCommentsCommands(lstFileLines);
+		extractSqlStatements(lstFileLines, emptyList, insertsList, cbidLnNum, cbIDQuery, cbidAction, srcTableList,
+				tarTableList, stAloneTableList, diGrapgList);
+		cleanMap.put("I",insertsList);
+		cleanMap.put("U",updatesList);
+		cleanMap.put("C",createsList);
+		cleanMap.put("D",deletesList);
+
+		setCodeBlock(respModel, codeBlockList, cbidLnNum, cbIDQuery, cbidAction, srcTableList, tarTableList,
+				stAloneTableList, diGrapgList);
+
+		List<String> srcTablesPreHash = new ArrayList<String>() ;
+		List<String> tarTablesPreHash = new ArrayList<String>() ;
+		int i =0;
+		for(List<String>  srctableListcopy1 : srcTableList.values()) {
+			srctableListcopy.add((ArrayList<String>) srctableListcopy1);
+			srcTablesPreHash.addAll(srctableListcopy1);
+		}
+		for(i=0; i <= (srctableListcopy.size()-1) ;i++){
+			ArrayList<String> newList = new ArrayList<String>(new HashSet<String>(srctableListcopy.get(i)));
+			tempListcopy.add((ArrayList<String>) newList);
+		}
+
+		for(List<String>  tarTableListcopy1 : tarTableList.values()) {
+			tarTableListcopy.add((ArrayList<String>) tarTableListcopy1);
+			tarTablesPreHash.addAll(tarTableListcopy1);
+		}
+		ArrayList<String> srcTables = new ArrayList<String>(new HashSet<String>(srcTablesPreHash));
+		ArrayList<String> tarTables = new ArrayList<String>(new HashSet<String>(tarTablesPreHash));
+		respModel.setSrctableList(srcTables);
+		respModel.setTartableList(tarTables);
+		setMainGraph(respModel, tempListcopy, tarTableListcopy,cbidAction);
+		return respModel;
+
+	}
+	private void setMainGraph(ResponseModel respModel, List<ArrayList<String>> srctableListcopy,
+			List<ArrayList<String>> tarTableListcopy, Map<Integer,String> cbidAction) {
+		String completeGraph="digraph prof {rankdir=LR; ratio = fill; node [style=filled, shape=box];";
+		String graph ="";
+
+		for(int i=0,j=0; i<srctableListcopy.size() ;i++,j++)
+		{
+			if(srctableListcopy.get(i).contains("")){
+
+				continue;
+			}
+			else{
+				if(tarTableListcopy.get(j).isEmpty()){
+					continue;
+				}
+				else{
+					Iterator<String> itr = srctableListcopy.get(i).iterator();
+					if(itr.hasNext()){
+						String tempGraph = "";
+						while(itr.hasNext()){
+							tempGraph += itr.next().toString().replace("[", "").replaceAll("]", "").replaceAll(";", "") + " -> " +  tarTableListcopy.get(j).toString().replace("[", "").replaceAll("]", "").replaceAll(";", "")+ " [color=red label= \"CBID " + (i+1) + "\"];";
+							break;
+						}
+						graph = tempGraph;
+					}
+
+				}
+			}
+			completeGraph += graph;
+		}
+		completeGraph += "}";
+		System.out.println("Complete Graph "  + completeGraph);
+		respModel.setCompleteGraph(completeGraph);
+	}
+	private void extractSqlStatements(List<String> lstFileLines, ArrayList<String> emptyList,
+			List<ArrayList<String>> insertsList, Map<Integer, String> cbidLnNum, Map<Integer, List<String>> cbIDQuery,
+			Map<Integer, String> cbidAction, Map<Integer, List<String>> srcTableList,
+			Map<Integer, List<String>> tarTableList, Map<Integer, List<String>> stAloneTableList,
+			Map<Integer, String> diGrapgList) throws Exception {
+		int tableCounter=0;
+		int queryCounter = 1;
+		int cbid = 1;
+		int actionCounter=1;
+		int digraphCounter=1;
+
+		for (int i = 0; i < lstFileLines.size(); i++) {
+			if (lstFileLines.get(i).startsWith("/*") | (lstFileLines.get(i).startsWith("STEP")) | lstFileLines.get(i).startsWith("--") | lstFileLines.get(i).contains("#") | lstFileLines.get(i).startsWith(".") | lstFileLines.get(i).startsWith("echo") | lstFileLines.get(i).startsWith("exit") | lstFileLines.get(i).contains("EOF")) 
+				continue;
+			else 
+			{
+				ArrayList<String> tmpList = new ArrayList<String>();
+				String tmpAction = null;
+				String lnNum = "";
+				if (lstFileLines.get(i).contains(("MERGE"))) {
+					tmpAction = "M" ;
+					lnNum = ((i +1) + " - ");
+					for (int j = i; j < lstFileLines.size(); j++) {
+						if (lstFileLines.get(j).startsWith("/*") | (lstFileLines.get(j).startsWith("STEP")) | lstFileLines.get(j).startsWith("--") | lstFileLines.get(j).startsWith("#") | lstFileLines.get(j).startsWith(".") | lstFileLines.get(j).startsWith("echo") | lstFileLines.get(j).contains("exit") | lstFileLines.get(j).contains("EOF")){
+							continue;
+						}
+						else
+						{
+							tmpList.add(lstFileLines.get(j).replaceAll("\t", " ").replaceAll("\\s{2,}"," ").replaceAll("[\u0000-\u001f]", ""));
+						}
+
+						if (lstFileLines.get(j).contains(";")) {
+							i=j;
+							lnNum = (lnNum + (i+1));
+							break;
+						}
+					}
+				}
+				else if (lstFileLines.get(i).contains(("INSERT"))) {
+					tmpAction = "I" ;
+					lnNum = ((i +1) + " - ");
+					for (int j = i; j < lstFileLines.size(); j++) {
+						if (lstFileLines.get(j).startsWith("/*") | (lstFileLines.get(j).startsWith("STEP")) | lstFileLines.get(j).startsWith("--") | lstFileLines.get(j).startsWith("#") | lstFileLines.get(j).startsWith(".") | lstFileLines.get(j).startsWith("echo") | lstFileLines.get(j).contains("exit") | lstFileLines.get(j).contains("EOF")){
+							continue;
+						}
+						else
+						{
+							tmpList.add(lstFileLines.get(j).replaceAll("\t", " ").replaceAll("\\s{2,}"," ").replaceAll("[\u0000-\u001f]", ""));
+						}
+
+						if (lstFileLines.get(j).contains(";")) {
+							i=j;
+							lnNum = (lnNum + (i+1));
+							break;
+						}
+					}
+				}
+				else if (lstFileLines.get(i).contains(("UPDATE"))) {
+					tmpAction = "U" ;
+					lnNum = ((i +1) + " - ");
+					for (int j = i; j < lstFileLines.size(); j++) {
+						if (lstFileLines.get(j).startsWith("/*") | (lstFileLines.get(j).startsWith("STEP")) | lstFileLines.get(j).startsWith("--") | lstFileLines.get(j).startsWith("#") | lstFileLines.get(j).startsWith(".") | lstFileLines.get(j).startsWith("echo") | lstFileLines.get(j).contains("exit") | lstFileLines.get(j).contains("EOF")){
+							continue;
+						}
+						else
+						{
+							tmpList.add(lstFileLines.get(j).replaceAll("\t", " ").replaceAll("\\s{2,}"," ").replaceAll("[\u0000-\u001f]", ""));
+						}
+						if (lstFileLines.get(j).contains(";")) {
+							i=j;
+							lnNum = (lnNum + (i+1));
+							break;
+						}
+					}
+				}
+
+				else if (lstFileLines.get(i).contains(("CREATE"))) {
+					tmpAction = "C" ;
+					lnNum = ((i +1) + " - ");
+					for (int j = i; j < lstFileLines.size(); j++) {
+						if (lstFileLines.get(j).startsWith("/*") | (lstFileLines.get(j).startsWith("STEP")) | lstFileLines.get(j).startsWith("--") | lstFileLines.get(j).startsWith("#") | lstFileLines.get(j).startsWith(".") | lstFileLines.get(j).startsWith("echo") | lstFileLines.get(j).contains("exit") | lstFileLines.get(j).contains("EOF")){
+							continue;
+						}
+						else
+						{
+							tmpList.add(lstFileLines.get(j).replaceAll("\t", " ").replaceAll("\\s{2,}"," ").replaceAll("[\u0000-\u001f]", ""));
+						}
+						if (lstFileLines.get(j).contains(";")) {
+							i=j;
+							lnNum = (lnNum + (i+1));
+							break;
+						}
+					}
+				}	
+				else if (lstFileLines.get(i).contains(("DELETE"))) {
+
+					tmpAction = "D" ;
+					lnNum = ((i +1) + " - ");
+
+					for (int j = i; j < lstFileLines.size(); j++) {
+						// System.out.println(str.get(j));
+						if (lstFileLines.get(j).startsWith("/*") | (lstFileLines.get(j).startsWith("STEP")) | lstFileLines.get(j).startsWith("--") | lstFileLines.get(j).startsWith("#") | lstFileLines.get(j).startsWith(".") | lstFileLines.get(j).startsWith("echo") | lstFileLines.get(j).contains("exit") | lstFileLines.get(j).contains("EOF")){
+							continue;
+						}
+						else
+						{
+							tmpList.add(lstFileLines.get(j).replaceAll("\t", " ").replaceAll("\\s{2,}"," ").replaceAll("[\u0000-\u001f]", ""));
+						}
+						if (lstFileLines.get(j).contains(";")) {
+							i=j;
+							lnNum = (lnNum + (i+1));
+							break;
+						}
+					}
+				}
+
+				else{
+					continue;
+				}
+
+				sanitizeQuery(tmpList);
+
+				++tableCounter;
+				switch(tmpAction){
+				case "I" :
+				case "U":
+				case "C":
+					extractCatTblsFromCrUpd(emptyList, insertsList, srcTableList, tarTableList, stAloneTableList,
+							tableCounter, tmpList);
+					break;
+				case "D": 
+					extractTablesFromDelete(emptyList, srcTableList, tarTableList, stAloneTableList, tableCounter,
+							tmpList);
+					break;
+				}
+
+				cbidLnNum.put(cbid++, lnNum);
+				cbIDQuery.put(queryCounter++, tmpList);
+				cbidAction.put(actionCounter++,tmpAction);
+
+				String tmpFullQuery ="";
+				for(int r=0; r <tmpList.size();r++){
+					if(tmpList.isEmpty())
+						continue;
+					else
+						tmpFullQuery = tmpFullQuery + ((tmpList.get(r).toString()).replaceAll("\\s{2,}"," ").replaceAll("[\u0000-\u001f]", "")).replaceAll("\\{", "").replaceAll("\\}", "") + " ";
+				}
+				String graph=diagramManipulator.getGraph(tmpFullQuery,srcTableList.get(cbid-1),tarTableList.get(cbid-1),stAloneTableList.get(cbid-1),cbidAction.get(actionCounter-1));
+				diGrapgList.put(digraphCounter++,graph);
+			}
+
+		}
+	}
+	private void sanitizeQuery(ArrayList<String> tmpList) {
+		tmpList.removeAll(Arrays.asList("",null));
+	}
+	/**
+	 * @param respModel
+	 * @param codeBlockList
+	 * @param cbidLnNum
+	 * @param cbIDQuery
+	 * @param cbidAction
+	 * @param srcTableList
+	 * @param tarTableList
+	 * @param stAloneTableList
+	 * @param diGrapgList
+	 */
+	private void setCodeBlock(ResponseModel respModel, List<CodeBlockModel> codeBlockList,
+			Map<Integer, String> cbidLnNum, Map<Integer, List<String>> cbIDQuery, Map<Integer, String> cbidAction,
+			Map<Integer, List<String>> srcTableList, Map<Integer, List<String>> tarTableList,
+			Map<Integer, List<String>> stAloneTableList, Map<Integer, String> diGrapgList) {
+		for (Entry<Integer, List<String>> entry : cbIDQuery.entrySet()) {
+			CodeBlockModel modelObj = new CodeBlockModel();
+			//  System.out.println(entry.getKey() + " " + entry.getValue());
+			modelObj.setCbid(entry.getKey());
+			modelObj.setQuery(entry.getValue());
+			//	modelObj.setGraph("digraph prof { rankdir=LR; ratio = fill; node [style=filled, shape=box];s -> r [color=red label=\"Inner Join\"]r -> h1 [color=red label=\"Inner Join\"]r -> h2 [color=red label=\"Inner Join\"]r -> h3 [color=red label=\"Inner Join\"]}");
+			modelObj.setGraph(diGrapgList.get(entry.getKey()));
+			modelObj.setLineno(cbidLnNum.get(entry.getKey()));
+			modelObj.setAction(cbidAction.get(entry.getKey()));
+			modelObj.setDbSrcTables(srcTableList.get(entry.getKey()));	
+			modelObj.setDbTargetTables(tarTableList.get(entry.getKey()));	
+			modelObj.setDbStAloneTables(stAloneTableList.get(entry.getKey()));
+			codeBlockList.add(modelObj);
+		}
+		respModel.setCodeBlocks(codeBlockList);
+	}
+	/**
+	 * @param emptyList
+	 * @param insertsList
+	 * @param srcTableList
+	 * @param tarTableList
+	 * @param stAloneTableList
+	 * @param tableCounter
+	 * @param tmpList
+	 */
+	private void extractCatTblsFromCrUpd(ArrayList<String> emptyList, List<ArrayList<String>> insertsList,
+			Map<Integer, List<String>> srcTableList, Map<Integer, List<String>> tarTableList,
+			Map<Integer, List<String>> stAloneTableList, int tableCounter, ArrayList<String> tmpList) {
+		insertsList.add(tmpList);
+		List<String> tarTemp = new ArrayList<String>();
+		ArrayList<String> srcList = new ArrayList<String>();
+		for(int itr=0;itr<tmpList.size();itr++){
+			if(tmpList.get(itr).contains("INSERT")){
+				populateInsertQuery(emptyList, srcTableList, tarTableList, stAloneTableList,
+						tableCounter, tmpList, tarTemp, itr);
+			}
+			else if(tmpList.get(itr).contains("UPDATE")){
+				populateUpdateQuery(emptyList, srcTableList, tarTableList, stAloneTableList,
+						tableCounter, tmpList, tarTemp, itr);
+			}
+			else if(tmpList.get(itr).contains("CREATE")){ 
+				extractCatTblsFromCreate(emptyList, srcTableList, tarTableList, stAloneTableList, tableCounter,
+						tmpList);
+			}
+			else
+				continue;
+		}
+		for(int itr=0;itr<tmpList.size();itr++){
+			if(tmpList.get(itr).contains("FROM")){
+				if(tmpList.get(itr).contains("SUBSTR"))
+					continue;
+				else{
+					List<String> tmpFrom = new ArrayList<String>();
+					String[] fromtxt = tmpList.get(itr).trim().toString().split(" ");
+					if(fromtxt.length==1 || (fromtxt[(fromtxt.length-1)].equalsIgnoreCase("FROM"))){
+						String[] fromtxt1 = tmpList.get(itr+1).trim().toString().split(" ");
+						if(fromtxt1[0].equalsIgnoreCase("(")||fromtxt1[0].contains("(")){
+							itr +=1;
+							continue;
+						}
+						else {
+							itr +=1;
+							srcList.add(fromtxt1[0].replace(";", ""));
+							continue;
+						}
+					}
+					else{
+						for(int k=0;k<fromtxt.length;k++){
+							if(fromtxt[k].isEmpty()){
+								continue;
+							}
+							else
+							{
+								tmpFrom.add(fromtxt[k]);
+							}
+						}
+						while(tmpFrom.contains("FROM")){
+							if((tmpFrom.get(tmpFrom.indexOf("FROM")+1).equalsIgnoreCase("SUBSTR")))
+								break;
+							else if((tmpFrom.get(tmpFrom.indexOf("FROM")+1).equalsIgnoreCase("("))){
+								if(tmpFrom.subList(tmpFrom.indexOf("FROM")+1, tmpFrom.size()).contains("FROM")){
+									tmpFrom=tmpFrom.subList(tmpFrom.indexOf("FROM")+1, tmpFrom.size());
+									System.out.println("Inside Else if");
+									System.out.println("FROM + 1 " + tmpFrom.get(tmpFrom.indexOf("FROM")+1) );
+								}
+								else
+								{
+									break;
+								}
+
+							}
+							else
+							{
+								srcList.add(tmpFrom.get(tmpFrom.indexOf("FROM")+1).replace(";", ""));
+								break;
+							}
+						}
+
+						/*for(int s=tmpFrom.indexOf("FROM")+1; s<tmpFrom.indexOf("FROM")+2;)
+						{
+							if(tmpFrom.contains("SUBSTR"))
+								break;
+							else if(tmpFrom.get(s).contains("(")){
+
+							}
+								srcList.add(tmpFrom.get(s).replace(";", ""));
+							break;
+						}*/
+					}
+				}
+			}
+			if(tmpList.get(itr).contains("JOIN")){
+				List<String> tmpFrom = new ArrayList<String>();
+				String[] fromtxt = tmpList.get(itr).trim().toString().split(" ");
+				if(fromtxt.length==1 || (fromtxt[(fromtxt.length-1)].equalsIgnoreCase("JOIN"))){
+					String[] fromtxt1 = tmpList.get(itr+1).trim().toString().split(" ");
+					if(fromtxt1[0].equalsIgnoreCase("(")||fromtxt1[0].contains("(")){
+						itr +=1;
+						continue;
+					}
+					else {
+						itr +=1;
+						srcList.add(fromtxt1[0].replace(";", ""));
+						continue;
+					}
+				}
+				else{
+					for(int k=0;k<fromtxt.length;k++){
+						if(fromtxt[k].isEmpty()){
+							continue;
+						}
+						else
+						{
+							tmpFrom.add(fromtxt[k]);
+						}
+					}
+					for(int s=tmpFrom.indexOf("JOIN")+1; s<tmpFrom.indexOf("JOIN")+2;)
+					{
+						srcList.add(tmpFrom.get(s).replace(";", ""));
+						break;
+					}
+				}
+			}
+
+		}
+
+		srcTableList.put(tableCounter, srcList);
+	}
+	/**
+	 * @param emptyList
+	 * @param srcTableList
+	 * @param tarTableList
+	 * @param stAloneTableList
+	 * @param tableCounter
+	 * @param tmpList
+	 */
+	private void extractTablesFromDelete(ArrayList<String> emptyList, Map<Integer, List<String>> srcTableList,
+			Map<Integer, List<String>> tarTableList, Map<Integer, List<String>> stAloneTableList, int tableCounter,
+			ArrayList<String> tmpList) {
+		List<String> srcTempD = new ArrayList<String>();
+		for(int itr=0;itr<tmpList.size();itr++){
+
+			if(tmpList.get(itr).contains("DELETE")){
+				String[] tmpTarTables = tmpList.get(itr).split(" ");
+
+				ArrayList<String> tarList = new ArrayList<String>();
+
+				for(int k=0;k<tmpTarTables.length;k++){
+					if(tmpTarTables[k].isEmpty()){
+						continue;
+					}
+					else
+					{
+						tarList.add(tmpTarTables[k]);
+					}
+				}
+				for(int y = tarList.indexOf("FROM")+1; y<tarList.size();)
+				{
+					srcTempD.add(tarList.get(y));
+					break;
+				}
+				stAloneTableList.put(tableCounter,srcTempD);
+				tarTableList.put(tableCounter,emptyList);
+				srcTableList.put(tableCounter, emptyList);
+			}
+		}
+	}
+	/**
+	 * @param emptyList
+	 * @param srcTableList
+	 * @param tarTableList
+	 * @param stAloneTableList
+	 * @param tableCounter
+	 * @param tmpList
+	 */
+	private void extractCatTblsFromCreate(ArrayList<String> emptyList, Map<Integer, List<String>> srcTableList,
+			Map<Integer, List<String>> tarTableList, Map<Integer, List<String>> stAloneTableList, int tableCounter,
+			ArrayList<String> tmpList) {
+		List<String> srcTempC = new ArrayList<String>();
+		for(int itr=0;itr<tmpList.size();itr++){
+
+			if(tmpList.get(itr).contains("CREATE")){
+				String[] tmpTarTables = tmpList.get(itr).split(" ");
+
+				ArrayList<String> tarList = new ArrayList<String>();
+
+				for(int k=0;k<tmpTarTables.length;k++){
+					if(tmpTarTables[k].isEmpty()){
+						continue;
+					}
+					else
+					{
+						tarList.add(tmpTarTables[k]);
+					}
+				}
+				for(int y = tarList.indexOf("TABLE")+1; y<tarList.size();y++)
+				{
+					System.out.println("Target " +tarList.get(y).toString());
+					srcTempC.add(tarList.get(y));
+
+				}
+				stAloneTableList.put(tableCounter,srcTempC);
+				tarTableList.put(tableCounter,emptyList);
+				srcTableList.put(tableCounter, emptyList);
+			}
+		}
+	}
+	/**
+	 * @param emptyList
+	 * @param srcTableList
+	 * @param tarTableList
+	 * @param stAloneTableList
+	 * @param tableCounter
+	 * @param tmpList
+	 * @param tarTemp
+	 * @param itr
+	 */
+	private void populateUpdateQuery(ArrayList<String> emptyList, Map<Integer, List<String>> srcTableList,
+			Map<Integer, List<String>> tarTableList, Map<Integer, List<String>> stAloneTableList, int tableCounter,
+			ArrayList<String> tmpList, List<String> tarTemp, int itr) {
+		String[] tmpTarTables = tmpList.get(itr).split(" ");
+		ArrayList<String> tarList = new ArrayList<String>();
+		for(int k=0;k<tmpTarTables.length;k++){
+			if(tmpTarTables[k].isEmpty()){
+				continue;
+			}
+			else
+			{
+				tarList.add(tmpTarTables[k]);
+			}
+		}
+		for(int y = tarList.indexOf("UPDATE")+1; y<tarList.size();)
+		{
+			if(tarList.get(y).equalsIgnoreCase("TGT")){
+				for(int itr1=0;itr1<tmpList.size();itr1++){
+						if(tmpList.get(itr1).contains("FROM")){
+							if(tmpList.get(itr1).contains("SUBSTR"))
+								continue;
+							else{
+								List<String> tmpFrom = new ArrayList<String>();
+								String[] fromtxt = tmpList.get(itr1).trim().toString().split(" ");
+								if(fromtxt.length==1 || (fromtxt[(fromtxt.length-1)].equalsIgnoreCase("FROM"))){
+									String[] fromtxt1 = tmpList.get(itr1+1).trim().toString().split(" ");
+									if(fromtxt1[0].equalsIgnoreCase("(")||fromtxt1[0].contains("(")){
+										itr1 +=1;
+										continue;
+									}
+									else {
+										itr1 +=1;
+										if(fromtxt1[0].contains("$"))
+											fromtxt1[0] = fromtxt1[0].substring(fromtxt1[0].indexOf(".")+1);
+										tarTemp.add(fromtxt1[0].replace(";", ""));
+										break;
+									}
+								}
+								else{
+									for(int k=0;k<fromtxt.length;k++){
+										if(fromtxt[k].isEmpty()){
+											continue;
+										}
+										else
+										{
+											tmpFrom.add(fromtxt[k]);
+										}
+									}
+									while(tmpFrom.contains("FROM")){
+										if((tmpFrom.get(tmpFrom.indexOf("FROM")+1).equalsIgnoreCase("SUBSTR")))
+											break;
+										else if((tmpFrom.get(tmpFrom.indexOf("FROM")+1).equalsIgnoreCase("("))){
+											if(tmpFrom.subList(tmpFrom.indexOf("FROM")+1, tmpFrom.size()).contains("FROM")){
+												tmpFrom=tmpFrom.subList(tmpFrom.indexOf("FROM")+1, tmpFrom.size());
+												System.out.println("Inside Else if");
+												System.out.println("FROM + 1 " + tmpFrom.get(tmpFrom.indexOf("FROM")+1) );
+											}
+											else
+											{
+												break;
+											}
+
+										}
+										else
+										{
+											String tmpFromname = null;
+											if(tmpFrom.get(tmpFrom.indexOf("FROM")+1).contains("$"))
+											{
+												tmpFromname = (tmpFrom.get(tmpFrom.indexOf("FROM")+1)).substring(tmpFrom.get(tmpFrom.indexOf("FROM")+1).indexOf(".")+1);
+											}
+											tarTemp.add(tmpFromname.replace(";", ""));
+											break;
+										}
+									}
+
+								}
+							}
+						}
+					}
+				}
+			else
+				tarTemp.add(tarList.get(y));
+			break;
+		}
+		tarTableList.put(tableCounter,tarTemp);
+		srcTableList.put(tableCounter, emptyList);
+		stAloneTableList.put(tableCounter,emptyList);
+	}
+	/**
+	 * @param emptyList
+	 * @param srcTableList
+	 * @param tarTableList
+	 * @param stAloneTableList
+	 * @param tableCounter
+	 * @param tmpList
+	 * @param tarTemp
+	 * @param itr
+	 */
+	private void populateInsertQuery(ArrayList<String> emptyList, Map<Integer, List<String>> srcTableList,
+			Map<Integer, List<String>> tarTableList, Map<Integer, List<String>> stAloneTableList, int tableCounter,
+			ArrayList<String> tmpList, List<String> tarTemp, int itr) {
+		String[] tmpTarTables = tmpList.get(itr).split(" ");
+
+		ArrayList<String> tarList = new ArrayList<String>();
+
+		for(int k=0;k<tmpTarTables.length;k++){
+			if(tmpTarTables[k].isEmpty()){
+				continue;
+			}
+			else
+			{
+				tarList.add(tmpTarTables[k]);
+			}
+		}
+		for(int y = tarList.indexOf("INTO")+1; y<tarList.size();y++)
+		{
+			if(tarList.get(y).endsWith(" ")){
+				continue;
+			}
+			else{
+				tarTemp.add(tarList.get(y));
+			}
+		}
+		tarTableList.put(tableCounter,tarTemp);
+		srcTableList.put(tableCounter, emptyList);
+		stAloneTableList.put(tableCounter,emptyList);
+	}
+	/**
+	 * @param inputFile
+	 * @param respModel
+	 * @return
+	 * @throws IOException
+	 */
+	/**
+	 * @param lstFileLines
+	 */
+	private void removeCommentsCommands(List<String> lstFileLines) {
+		for(int fileLinesIterator=0; fileLinesIterator < lstFileLines.size(); fileLinesIterator++){
+
+			if(lstFileLines.get(fileLinesIterator).trim().startsWith("/*")){
+				for(int internalTraverser = fileLinesIterator; internalTraverser< lstFileLines.size();internalTraverser++){
+					//	System.out.println(j + " "  + it.get(j));
+					if(lstFileLines.get(internalTraverser).trim().endsWith("*/")){
+						lstFileLines.remove(internalTraverser);
+						lstFileLines.add(internalTraverser, "");
+						fileLinesIterator=internalTraverser;
+						break;
+					}
+					else{
+						lstFileLines.remove(internalTraverser);
+						lstFileLines.add(internalTraverser, "");
+					}
+				}
+			}
+			else 
+				continue;
+		}
+		for(int q=0; q < lstFileLines.size(); q++){
+
+			if(lstFileLines.get(q).trim().startsWith("/*")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().isEmpty()){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().endsWith("*/") && (lstFileLines.get(q).trim().startsWith("*") || lstFileLines.get(q).trim().startsWith("/*"))){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().startsWith("STEP")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().startsWith("--")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().startsWith("--,")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().startsWith("#")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().startsWith(".")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().startsWith("echo")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().startsWith("exit")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).trim().startsWith("eof")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).contains("****")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else if(lstFileLines.get(q).contains("Error")){
+				lstFileLines.remove(q);
+				lstFileLines.add(q, "");
+			}
+			else
+				continue;
+
+			if(lstFileLines.get(q).contains("--")){
+				int indexOfhyphen = lstFileLines.get(q).indexOf("--");
+				String templstFileLine = (lstFileLines.get(q).substring(0, (indexOfhyphen-1)));
+				lstFileLines.remove(q);
+				lstFileLines.add(q, templstFileLine);
+			}
+			
+			if(lstFileLines.get(q).contains("/*")){
+				int indexOfstart = lstFileLines.get(q).indexOf("/*");
+				String templstFileLine = (lstFileLines.get(q).substring(0, (indexOfstart-1)));
+				lstFileLines.remove(q);
+				lstFileLines.add(q, templstFileLine);
+			}
+
+		}
+
+
+	}
+	private List<String> saveFileToModal(MultipartFile inputFile, ResponseModel respModel) throws IOException {
+		byte [] byteArr=inputFile.getBytes();
+
+		InputStream inputStream = new ByteArrayInputStream(byteArr);
+
+		List<String> it = IOUtils.readLines(inputStream);
+		StringBuilder data = new StringBuilder();
+		it.forEach(line -> data.append(line).append("\n"));
+
+		respModel.setFileContent(data.toString());
+		return it;
+
+
+	}
+
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Script Analyzer</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css" rel="stylesheet"> 
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">  
+
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/js/sb-admin-2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.0/metisMenu.js"></script>
+    
+	<script type="text/javascript">
+	
+		$(window).on('load',function(){
+			$('#myModal').modal('show');
+		});
+
+	//Uploading the file
+
+
+
+	</script>
+	
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                 <a class="navbar-brand" href="home.html" style="font-family: 'Lobster', cursive; margin-left:150px;
+            font-size:35px; color:#fff;"><span style="color:#2196F3;">S</span>cript 
+            <span style="color:#2196F3;">A</span>nalyser</a>
+
+            </div>
+            <div class="navbar-default sidebar" role="navigation" width="500px">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu" >
+                        
+                        <li>
+                            <a href="#" style="color:#F44336;"><i class="fa fa-circle-o fa-fw"></i>Code Blocks<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse in" id="c">
+                            </ul>
+
+<script>
+//Display Code Block details
+
+var text1=  
+		    [{
+		        "cbid":1,
+		        "lineno": "79 - 84",
+		        "action": "I",
+		        "dbSrcTables": ["LZ_TEMP_TST_CLM_GNCCLMP1","LZ_TEMP_TST_CLM_GNCCLMR1"],
+		        "dbTargetTables": ["TST_ABC_STGA","TST_ABC_STGB"],
+		        "dbStAloneTables": ["TST_ABC_STG1"],
+		        "query": [
+		            "1 DELETE  FROM TST_ABC_STG WHERE LOAD_LOG_KEY=(SELECT CSA_LOAD_LOG_KEY FROM LZ_TEMP_TST_CLM_GNCCLMP GROUP BY 1);"
+		        ]
+		    },
+		    {
+		        "cbid":2,
+		        "lineno": "90 - 156",
+		        "action": "U",
+		        "dbSrcTables": ["LZ_TEMP_TST_CLM_GNCCLMP2","LZ_TEMP_TST_CLM_GNCCLMR2"],
+		        "dbTargetTables": ["tableB","tableC"],
+		        "dbStAloneTables": ["TST_ABC_STG2"],
+		        "query": [
+		            "2 DELETE  FROM TST_ABC_STG WHERE LOAD_LOG_KEY=(SELECT CSA_LOAD_LOG_KEY FROM LZ_TEMP_TST_CLM_GNCCLMP GROUP BY 1);"
+		        ]
+		    },
+		    {
+		        "cbid":3,
+		        "lineno": "90 - 156",
+		        "action": "U",
+		        "dbSrcTables": ["LZ_TEMP_TST_CLM_GNCCLMP3","LZ_TEMP_TST_CLM_GNCCLMR3"],
+		        "dbTargetTables": ["tableD","tableE"],
+		        "dbStAloneTables": ["TST_ABC_STG3"],
+		        "query": [
+		            "3 DELETE  FROM TST_ABC_STG WHERE LOAD_LOG_KEY=(SELECT CSA_LOAD_LOG_KEY FROM LZ_TEMP_TST_CLM_GNCCLMP GROUP BY 1);"
+		        ]
+		    },
+		    {
+		        "cbid": 4,
+		        "lineno": "79 - 84",
+		        "action": "D",
+		        "dbSrcTables": [],
+		        "dbTargetTables": [],
+		        "dbStAloneTables": [
+		            "DELETE",
+		            "TST_ABC_STG"
+		        ],
+		        "query": [
+		            " 4DELETE SCRIPT FOR TST_ABC_STG IN CASE OF RELOADING       ",
+		            "DELETE  FROM TST_ABC_STG WHERE LOAD_LOG_KEY=(SELECT CSA_LOAD_LOG_KEY FROM LZ_TEMP_TST_CLM_GNCCLMP GROUP BY 1);"
+		        ]
+		    }
+		];
+//var obj = JSON.parse(text1);
+var obj = text1;
+var i,x="";
+console.log("length of json:"+obj.length);
+for (i = 0; i < obj.length; i++) {
+    console.log("obj..cbid:"+obj[i].cbid);
+    x += "&nbsp &nbsp &nbsp &nbsp &nbsp <a href=# onclick=source("+ obj[i].cbid +")>"+ "Code Block "+ obj[i].cbid +" ["+obj[i].lineno +"] " +"</a>" + "<br>";
+    console.log("obj..x"+x);
+}
+document.getElementById("c").innerHTML =x;
+
+</script>
+                        </li>
+                        <li>
+                            <a href="#" style="color:#01579B"><i class="fa fa-circle-o fa-fw"></i>Source Tables<span class="fa arrow">                             </span></a>
+                            <ul class="nav nav-second-level collapse in" id="sourcetables">
+                             
+                            </ul>                            
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#" style="color:#1B5E20"><i class="fa fa-circle-o fa-fw"></i>Target Tables<span class="fa arrow">                             </span></a>
+                            <ul class="nav nav-second-level collapse in" id="targettables">
+                            </ul>                            
+                        </li>
+                        <li>
+                            <a href="#" style="color:#BF360C;"><i class="fa fa-circle-o fa-fw"></i>Table Created/Deleted<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse in" id="stdalonetables">
+                            </ul>
+                            
+                            <script>
+                            function source(index)
+                            { 
+                                //Display Source Tables, Target Tables & Standalone details
+                                var i,j,k,srctables="",tgttables="",stdalntables="";
+                                console.log("source function...index"+index);
+                                console.log("source function...dbSrcTables.length"+obj[index-1].dbSrcTables.length);
+                                console.log("source function...targettables.length"+obj[index-1].dbTargetTables.length);
+                                console.log("source function...action"+obj[index-1].dbTargetTables.length);
+                                  //source tables
+								  
+								   document.getElementById("inputTextToSave").innerHTML = obj[index-1].query;
+								   
+                                  for (i = 0; i < obj[index-1].dbSrcTables.length; i++)                             
+                                   { 
+                                   srctables += "&nbsp &nbsp &nbsp"+obj[index-1].dbSrcTables[i]+ "<br>";
+                                   }                                
+                                  document.getElementById("sourcetables").innerHTML = srctables;
+                                
+                                  //target tables
+                                  for (j = 0; j < obj[index-1].dbTargetTables.length; j++)                             
+                                   { 
+                                   tgttables += "&nbsp &nbsp &nbsp"+obj[index-1].dbTargetTables[j]+"&nbsp <span class=\"label label-success \">"+obj[j].action +"</span><br>";
+                                   }                                                         
+                                  document.getElementById("targettables").innerHTML = tgttables;
+                                
+                                 //standalone tables
+                                  for (k = 0; k < obj[index-1].dbStAloneTables.length; k++)                             
+                                   { 
+                                   stdalntables += "&nbsp &nbsp &nbsp"+obj[index-1].dbStAloneTables[k]+"<br>";
+                                   }                                                         
+                                  document.getElementById("stdalonetables").innerHTML = stdalntables;
+                            }
+                            </script>
+                            
+                            <!-- /.nav-second-level -->
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper"><br>
+				<div class="row">
+					<div class="form-group">
+						<textarea id="inputTextToSave" rows="18	" class="form-control"></textarea>
+					</div>
+					<center>
+						<button type="submit" class="btn btn-danger btn-outline btn-lg">Analyse Different File</button>
+					</center>
+				</div>
+        </div>
+        <!-- /#page-wrapper -->	
+
+    </div>
+  
+    <!-- /#wrapper -->
+	
+	<script type="text/javascript">
+ 
+		function destroyClickedElement(event)
+		{
+			document.body.removeChild(event.target);
+		} 
+		 
+	</script>
+
+</body>
+
+</html>
